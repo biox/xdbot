@@ -153,5 +153,9 @@ func getCrypto(symbol string) (string, error) {
 		return "", err
 	}
 
+	if coinBody.USD <= 0.0 {
+		return "invalid currency: " + upperCaseSymbol, nil
+	}
+
 	return "$" + strconv.FormatFloat(coinBody.USD, 'f', 2, 64), err
 }
